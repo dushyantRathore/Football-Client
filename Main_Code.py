@@ -46,12 +46,16 @@ def epl():
     # League Standings
     if a == '1':
         url = "http://www.espn.in/football/table/_/league/eng.1"
-        League_Standings(url)
+        leagueStandings(url)
 
     # Top Scorers
     elif a == '2':
         url = "http://www.espnfc.com/english-premier-league/23/statistics/scorers"
-        Top_Scorers(url)
+        topScorers(url)
+
+    elif a =='3':
+        url = "http://www.espnfc.com/english-premier-league/23/statistics/assists"
+        topAssists(url)
 
     print '\033[91m' + "\nDo you wish to continue exploring ? (Press y/n)" + '\033[00m'
 
@@ -63,7 +67,9 @@ def epl():
         print '\033[93m' + "\nThank You" + '\033[00m'
         exit()
 
-def League_Standings(u):
+
+# Function to fetch the League Standings
+def leagueStandings(u):
     url = str(u)
     contest_file = urllib2.urlopen(url)
     contest_html = contest_file.read()
@@ -124,9 +130,12 @@ def League_Standings(u):
     df["Goals Difference"] = goals_difference
     df["Points"] = points
 
+    print "\n"
     print df.to_string()
 
-def Top_Scorers(u):
+
+# Function to fetch the Top Scorers
+def topScorers(u):
     url = str(u)
     contest_file = urllib2.urlopen(url)
     contest_html = contest_file.read()
@@ -164,6 +173,51 @@ def Top_Scorers(u):
     df["Team"] = team_list
     df["Goals"] = goals_list
 
+    print "\n"
     print df
+
+
+# Function to
+def topAssists(u):
+    url = str(u)
+    contest_file = urllib2.urlopen(url)
+    contest_html = contest_file.read()
+    contest_file.close()
+
+    soup = BeautifulSoup(contest_html, "html.parser")
+    rank = soup.find_all("td", attrs={'headers': 'rank'})
+    players = soup.find_all("td", attrs={'headers': 'player'})
+    team = soup.find_all("td", attrs={'headers': 'team'})
+    assists = soup.find_all("td", attrs={'headers': 'goals'})
+
+    rank_list = []
+    players_list = []
+    team_list = []
+    assists_list = []
+
+    for i in rank:
+        rank_list.append(i.text)
+
+    for i in players:
+        players_list.append(i.text)
+
+    for i in team:
+        team_list.append(i.text)
+
+    for i in assists:
+        assists_list.append(i.text)
+
+    sequence = ["Rank", "Player", "Team", "Assists"]
+    df = pd.DataFrame()
+    df = df.reindex(columns=sequence)
+
+    df["Rank"] = rank_list
+    df["Player"] = players_list
+    df["Team"] = team_list
+    df["Assists"] = assists_list
+
+    print "\n"
+    print df
+
 
 Entry()
