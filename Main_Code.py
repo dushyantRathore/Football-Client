@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import urllib2
 import pandas as pd
+import numpy as np
 
 # Entry Function
 def Entry():
@@ -53,9 +54,20 @@ def epl():
         url = "http://www.espnfc.com/english-premier-league/23/statistics/scorers"
         topScorers(url)
 
-    elif a =='3':
+    # Top Assists
+    elif a == '3':
         url = "http://www.espnfc.com/english-premier-league/23/statistics/assists"
         topAssists(url)
+
+    # Discipline
+    elif a == '4':
+        url = "http://www.espnfc.com/english-premier-league/23/statistics/discipline"
+        discipline(url)
+
+    # Fair Play
+    elif a == '5':
+        url = "http://www.espnfc.com/english-premier-league/23/statistics/fairplay"
+        fairplay(url)
 
     print '\033[91m' + "\nDo you wish to continue exploring ? (Press y/n)" + '\033[00m'
 
@@ -177,7 +189,7 @@ def topScorers(u):
     print df
 
 
-# Function to
+# Function to fetch the top assists
 def topAssists(u):
     url = str(u)
     contest_file = urllib2.urlopen(url)
@@ -219,5 +231,102 @@ def topAssists(u):
     print "\n"
     print df
 
+
+# Function to fetch the discipline rankings
+def discipline(u):
+    url = str(u)
+    contest_file = urllib2.urlopen(url)
+    contest_html = contest_file.read()
+    contest_file.close()
+
+    soup = BeautifulSoup(contest_html, "html.parser")
+
+    rank = soup.find_all('td', attrs={'headers': 'rank'})
+    player = soup.find_all('td', attrs={'headers': 'player'})
+    team = soup.find_all('td', attrs={'headers': 'team'})
+    points = soup.find_all('td', attrs={'headers': 'goals'})
+
+    rank_list = []
+    player_list = []
+    team_list = []
+    yc_list =[]
+    rc_list =[]
+    points_list =[]
+
+    for i in rank:
+        rank_list.append(i.text)
+
+    for i in player:
+        player_list.append(i.text)
+
+    for i in team:
+        team_list.append(i.text)
+
+    for i in range(0, len(points), 3):
+        yc_list.append(points[i].text)
+
+    for i in range(1, len(points), 3):
+        rc_list.append(points[i].text)
+
+    for i in range(2, len(points), 3):
+        points_list.append(points[i].text)
+
+    sequence = ['Rank', 'Player', 'Team', 'Yellow Cards', 'Red Cards', 'Points']
+    df = pd.DataFrame()
+    df = df.reindex(columns=sequence)
+
+    df["Rank"] = rank_list
+    df["Player"] = player_list
+    df["Team"] = team_list
+    df["Yellow Cards"] = yc_list
+    df["Red Cards"] = rc_list
+    df["Points"] = points_list
+
+    print df.to_string()
+
+def fairplay(u):
+    url = str(u)
+    contest_file = urllib2.urlopen(url)
+    contest_html = contest_file.read()
+    contest_file.close()
+
+    soup = BeautifulSoup(contest_html, 'html.parser')
+
+    rank = soup.find_all('td', attrs={'headers': 'rank'})
+    team = soup.find_all('td', attrs={'headers': 'team'})
+    points = soup.find_all('td', attrs={'headers': 'goals'})
+
+    rank_list = []
+    team_list = []
+    yc_list = []
+    rc_list = []
+    points_list = []
+
+    for i in rank:
+        rank_list.append(i.text)
+
+    for i in team:
+        team_list.append(i.text)
+
+    for i in range(0, len(points), 3):
+        yc_list.append(points[i].text)
+
+    for i in range(1, len(points), 3):
+        rc_list.append(points[i].text)
+
+    for i in range(2, len(points), 3):
+        points_list.append(points[i].text)
+
+    sequence = ['Rank', 'Team', 'Yellow Cards', 'Red Cards', 'Points']
+    df = pd.DataFrame()
+    df = df.reindex(columns=sequence)
+
+    df["Rank"] = rank_list
+    df["Team"] = team_list
+    df["Yellow Cards"] = yc_list
+    df["Red Cards"] = rc_list
+    df["Points"] = points_list
+
+    print df.to_string()
 
 Entry()
