@@ -71,7 +71,7 @@ def epl():
 
     else:
         print "Invalid Choice"
-
+        exit()
 
     print '\033[91m' + "\nDo you wish to continue exploring ? (Press y/n)" + '\033[00m'
 
