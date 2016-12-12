@@ -69,6 +69,10 @@ def epl():
         url = "http://www.espnfc.com/english-premier-league/23/statistics/fairplay"
         fairplay(url)
 
+    else:
+        print "Invalid Choice"
+
+
     print '\033[91m' + "\nDo you wish to continue exploring ? (Press y/n)" + '\033[00m'
 
     b = raw_input('\033[1m' + "\nEnter your choice : " + '\033[00m')
