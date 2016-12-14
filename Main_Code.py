@@ -73,6 +73,7 @@ def epl():
         fairplay(url)
 
     else:
+<<<<<<< HEAD
         print "Invalid choice"
 
     print '\033[91m' + "\nDo you wish to continue exploring ? (Press y/n)" + '\033[00m'
@@ -126,6 +127,11 @@ def laliga():
     else:
         print "Invalid choice"
 
+=======
+        print "Invalid Choice"
+        exit()
+
+>>>>>>> bea52f9bc6e515df4c2601da8bc519173dc9a53a
     print '\033[91m' + "\nDo you wish to continue exploring ? (Press y/n)" + '\033[00m'
 
     b = raw_input('\033[1m' + "\nEnter your choice : " + '\033[00m')
