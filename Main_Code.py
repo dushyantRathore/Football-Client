@@ -15,12 +15,13 @@ def Entry():
     elif x == 'n':
         exit()
 
+
 # Main Menu
 def menu():
 
     print '\033[94m' + "\nPress 1 for English Premier League"
     print "Press 2 for Spanish Primera Division"
-    print "Press 3 for Bundesliga" + '\033[00m'
+    print "Press 3 for German Bundesliga" + '\033[00m'
 
     choice = raw_input('\033[1m' + "\nEnter your choice : " + '\033[00m')
 
@@ -30,8 +31,11 @@ def menu():
     elif choice == '2':
         laliga()
 
+    elif choice == '3':
+        bundesliga()
+
     else:
-        print "Invalid Choice"
+        print "Invalid choice"
 
 
 # EPL function
@@ -73,7 +77,6 @@ def epl():
         fairplay(url)
 
     else:
-<<<<<<< HEAD
         print "Invalid choice"
 
     print '\033[91m' + "\nDo you wish to continue exploring ? (Press y/n)" + '\033[00m'
@@ -87,6 +90,7 @@ def epl():
         exit()
 
 
+# Laliga function
 def laliga():
 
     print '\033[96m' + "\nWelcome to Spanish Primera Division" + '\033[00m'
@@ -126,12 +130,60 @@ def laliga():
 
     else:
         print "Invalid choice"
-
-=======
-        print "Invalid Choice"
         exit()
 
->>>>>>> bea52f9bc6e515df4c2601da8bc519173dc9a53a
+    print '\033[91m' + "\nDo you wish to continue exploring ? (Press y/n)" + '\033[00m'
+
+    b = raw_input('\033[1m' + "\nEnter your choice : " + '\033[00m')
+
+    if b == 'y':
+        menu()
+    elif b == 'n':
+        print '\033[93m' + "\nThank You" + '\033[00m'
+        exit()
+
+
+# Bundesliga function
+def bundesliga():
+
+    print '\033[96m' + "\nWelcome to German Bundesliga" + '\033[00m'
+
+    print '\033[94m' + "\nPress 1 for League Standings"
+    print "Press 2 for Top Scorers"
+    print "Press 3 for Top Assists"
+    print "Press 4 for Discipline"
+    print "Press 5 for Fairplay" + '\033[00m'
+
+    a = raw_input('\033[1m' + "\nEnter your choice : " + '\033[00m')
+
+    # League Standings
+    if a == '1':
+        url = "http://www.espn.in/football/table/_/league/ger.1"
+        # leagueStandings_bundesliga(url)
+
+    # Top Scorers
+    elif a == '2':
+        url = "http://www.espnfc.us/german-bundesliga/10/statistics/scorers"
+        topScorers(url)
+
+    # Top Assists
+    elif a == '3':
+        url = "http://www.espnfc.us/german-bundesliga/10/statistics/assists"
+        topAssists(url)
+
+    # Discipline
+    elif a == '4':
+        url = "http://www.espnfc.us/german-bundesliga/10/statistics/discipline"
+        discipline(url)
+
+    # Fair Play
+    elif a == '5':
+        url = "http://www.espnfc.us/german-bundesliga/10/statistics/fairplay"
+        fairplay(url)
+
+    else:
+        print "Invalid choice"
+
     print '\033[91m' + "\nDo you wish to continue exploring ? (Press y/n)" + '\033[00m'
 
     b = raw_input('\033[1m' + "\nEnter your choice : " + '\033[00m')
@@ -207,6 +259,72 @@ def leagueStandings(url):
 
     print "\n"
     print df.to_string()
+
+
+# Function to fetch the League Standings for Bundesliga
+# def leagueStandings_bundesliga(url):
+#     url = str(url)
+#     contest_file = urllib2.urlopen(url)
+#     contest_html = contest_file.read()
+#     contest_file.close()
+#
+#     soup = BeautifulSoup(contest_html, 'html.parser')
+#
+#     row = soup.find_all("tr", attrs={'class': 'standings-row'})
+#
+#     table = []
+#
+#     for i in row:
+#         team = []
+#         for j in i:
+#             team.append(j.text)
+#             if len(team) == 9:
+#                 table.append(team)
+#
+#     team_name = []
+#     games_played = []
+#     wins = []
+#     draws = []
+#     losses = []
+#     goals_for = []
+#     goals_against = []
+#     goals_difference = []
+#     points = []
+#
+#     for i in range(0, 18):
+#         x = str(i + 1)
+#         team_name.append(table[i][0].strip(x))
+#         games_played.append(table[i][1])
+#         wins.append(table[i][2])
+#         draws.append(table[i][3])
+#         losses.append(table[i][4])
+#         goals_for.append(table[i][5])
+#         goals_against.append(table[i][6])
+#         goals_difference.append(table[i][7])
+#         points.append(table[i][8])
+#
+#     sequence = ["Position", "Team", "Games", "Wins", "Draws", "Losses", "For", "Against", "Goals Difference",
+#                 "Points"]
+#     df = pd.DataFrame()
+#     df = df.reindex(columns=sequence)
+#
+#     pos = []
+#     for i in range(1, 21):
+#         pos.append(i)
+#
+#     df["Position"] = pos
+#     df["Team"] = team_name
+#     df["Games"] = games_played
+#     df["Wins"] = wins
+#     df["Draws"] = draws
+#     df["Losses"] = losses
+#     df["For"] = goals_for
+#     df["Against"] = goals_against
+#     df["Goals Difference"] = goals_difference
+#     df["Points"] = points
+#
+#     print "\n"
+#     print df.to_string()
 
 
 # Function to fetch the Top Scorers
