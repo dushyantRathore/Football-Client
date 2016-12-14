@@ -19,13 +19,16 @@ def Entry():
 def menu():
 
     print '\033[94m' + "\nPress 1 for English Premier League"
-    print "Press 2 for La liga"
+    print "Press 2 for Spanish Primera Division"
     print "Press 3 for Bundesliga" + '\033[00m'
 
     choice = raw_input('\033[1m' + "\nEnter your choice : " + '\033[00m')
 
     if choice == '1':
         epl()
+
+    elif choice == '2':
+        laliga()
 
     else:
         print "Invalid Choice"
@@ -69,6 +72,60 @@ def epl():
         url = "http://www.espnfc.com/english-premier-league/23/statistics/fairplay"
         fairplay(url)
 
+    else:
+        print "Invalid choice"
+
+    print '\033[91m' + "\nDo you wish to continue exploring ? (Press y/n)" + '\033[00m'
+
+    b = raw_input('\033[1m' + "\nEnter your choice : " + '\033[00m')
+
+    if b == 'y':
+        menu()
+    elif b == 'n':
+        print '\033[93m' + "\nThank You" + '\033[00m'
+        exit()
+
+
+def laliga():
+
+    print '\033[96m' + "\nWelcome to Spanish Primera Division" + '\033[00m'
+
+    print '\033[94m' + "\nPress 1 for League Standings"
+    print "Press 2 for Top Scorers"
+    print "Press 3 for Top Assists"
+    print "Press 4 for Discipline"
+    print "Press 5 for Fairplay" + '\033[00m'
+
+    a = raw_input('\033[1m' + "\nEnter your choice : " + '\033[00m')
+
+    # League Standings
+    if a == '1':
+        url = "http://www.espn.in/football/table/_/league/esp.1"
+        leagueStandings(url)
+
+    # Top Scorers
+    elif a == '2':
+        url = "http://www.espnfc.com/spanish-primera-division/15/statistics/scorers"
+        topScorers(url)
+
+    # Top Assists
+    elif a == '3':
+        url = "http://www.espnfc.com/spanish-primera-division/15/statistics/assists"
+        topAssists(url)
+
+    # Discipline
+    elif a == '4':
+        url = "http://www.espnfc.com/spanish-primera-division/15/statistics/discipline"
+        discipline(url)
+
+    # Fairplay
+    elif a == '5':
+        url = "http://www.espnfc.com/spanish-primera-division/15/statistics/fairplay"
+        fairplay(url)
+
+    else:
+        print "Invalid choice"
+
     print '\033[91m' + "\nDo you wish to continue exploring ? (Press y/n)" + '\033[00m'
 
     b = raw_input('\033[1m' + "\nEnter your choice : " + '\033[00m')
@@ -81,8 +138,8 @@ def epl():
 
 
 # Function to fetch the League Standings
-def leagueStandings(u):
-    url = str(u)
+def leagueStandings(url):
+    url = str(url)
     contest_file = urllib2.urlopen(url)
     contest_html = contest_file.read()
     contest_file.close()
@@ -147,8 +204,8 @@ def leagueStandings(u):
 
 
 # Function to fetch the Top Scorers
-def topScorers(u):
-    url = str(u)
+def topScorers(url):
+    url = str(url)
     contest_file = urllib2.urlopen(url)
     contest_html = contest_file.read()
     contest_file.close()
@@ -190,8 +247,8 @@ def topScorers(u):
 
 
 # Function to fetch the top assists
-def topAssists(u):
-    url = str(u)
+def topAssists(url):
+    url = str(url)
     contest_file = urllib2.urlopen(url)
     contest_html = contest_file.read()
     contest_file.close()
@@ -233,8 +290,8 @@ def topAssists(u):
 
 
 # Function to fetch the discipline rankings
-def discipline(u):
-    url = str(u)
+def discipline(url):
+    url = str(url)
     contest_file = urllib2.urlopen(url)
     contest_html = contest_file.read()
     contest_file.close()
@@ -284,8 +341,8 @@ def discipline(u):
 
     print df.to_string()
 
-def fairplay(u):
-    url = str(u)
+def fairplay(url):
+    url = str(url)
     contest_file = urllib2.urlopen(url)
     contest_html = contest_file.read()
     contest_file.close()
