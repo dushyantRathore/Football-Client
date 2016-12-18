@@ -153,39 +153,44 @@ def laliga():
 
 # Bundesliga function
 def bundesliga():
+    print '\033[96m' + "\nWelcome to English Premier League" + '\033[00m'
 
-    print '\033[96m' + "\nWelcome to German Bundesliga" + '\033[00m'
-
-    print '\033[94m' + "\nPress 1 for League Standings"
-    print "Press 2 for Top Scorers"
-    print "Press 3 for Top Assists"
-    print "Press 4 for Discipline"
-    print "Press 5 for Fairplay" + '\033[00m'
+    print '\033[94m' + "\nPress 1 for League Fixtures"
+    print "Press 2 for League Standings"
+    print "Press 3 for Top Scorers"
+    print "Press 4 for Top Assists"
+    print "Press 5 for Discipline"
+    print "Press 6 for Fairplay" + '\033[00m'
 
     a = raw_input('\033[1m' + "\nEnter your choice : " + '\033[00m')
 
-    # League Standings
+    # League Fixtures
     if a == '1':
+        url = "http://www.bbc.com/sport/football/german-bundesliga/fixtures"
+        getFixtures(url)
+
+    # League Standings
+    elif a == '2':
         url = "http://www.espn.in/football/table/_/league/ger.1"
         leagueStandings_bundesliga(url)
 
     # Top Scorers
-    elif a == '2':
+    elif a == '3':
         url = "http://www.espnfc.us/german-bundesliga/10/statistics/scorers"
         topScorers(url)
 
     # Top Assists
-    elif a == '3':
+    elif a == '4':
         url = "http://www.espnfc.us/german-bundesliga/10/statistics/assists"
         topAssists(url)
 
     # Discipline
-    elif a == '4':
+    elif a == '5':
         url = "http://www.espnfc.us/german-bundesliga/10/statistics/discipline"
         discipline(url)
 
     # Fair Play
-    elif a == '5':
+    elif a == '6':
         url = "http://www.espnfc.us/german-bundesliga/10/statistics/fairplay"
         fairplay(url)
 
