@@ -44,43 +44,48 @@ def epl():
 
     print '\033[96m' + "\nWelcome to English Premier League" + '\033[00m'
 
-    print '\033[94m' + "\nPress 1 for League Fixtures"
-    print "Press 2 for League Standings"
-    print "Press 3 for Top Scorers"
-    print "Press 4 for Top Assists"
-    print "Press 5 for Discipline"
-    print "Press 6 for Fairplay" + '\033[00m'
-
+    print '\033[94m' + "\nPress 1 for Latest League Results"
+    print "Press 2 for League Fixtures"
+    print "Press 3 for League Standings"
+    print "Press 4 for Top Scorers"
+    print "Press 5 for Top Assists"
+    print "Press 6 for Discipline"
+    print "Press 7 for Fairplay" + '\033[00m'
 
     a = raw_input('\033[1m' + "\nEnter your choice : " + '\033[00m')
 
-    # League Fixtures
+    # League Results
     if a == '1':
+        url = "http://www.bbc.com/sport/football/premier-league/results"
+        showResults(url)
+
+    # League Fixtures
+    elif a == '2':
         url = "http://www.bbc.com/sport/football/premier-league/fixtures"
         getFixtures(url)
 
     # League Standings
-    elif a == '2':
+    elif a == '3':
         url = "http://www.espn.in/football/table/_/league/eng.1"
         leagueStandings(url)
 
     # Top Scorers
-    elif a == '3':
+    elif a == '4':
         url = "http://www.espnfc.com/english-premier-league/23/statistics/scorers"
         topScorers(url)
 
     # Top Assists
-    elif a == '4':
+    elif a == '5':
         url = "http://www.espnfc.com/english-premier-league/23/statistics/assists"
         topAssists(url)
 
     # Discipline
-    elif a == '5':
+    elif a == '6':
         url = "http://www.espnfc.com/english-premier-league/23/statistics/discipline"
         discipline(url)
 
     # Fair Play
-    elif a == '6':
+    elif a == '7':
         url = "http://www.espnfc.com/english-premier-league/23/statistics/fairplay"
         fairplay(url)
 
@@ -100,7 +105,7 @@ def epl():
 
 # Laliga function
 def laliga():
-    print '\033[96m' + "\nWelcome to English Premier League" + '\033[00m'
+    print '\033[96m' + "\nWelcome to La Liga" + '\033[00m'
 
     print '\033[94m' + "\nPress 1 for League Fixtures"
     print "Press 2 for League Standings"
@@ -158,7 +163,7 @@ def laliga():
 
 # Bundesliga function
 def bundesliga():
-    print '\033[96m' + "\nWelcome to English Premier League" + '\033[00m'
+    print '\033[96m' + "\nWelcome to Bundesliga" + '\033[00m'
 
     print '\033[94m' + "\nPress 1 for League Fixtures"
     print "Press 2 for League Standings"
@@ -211,6 +216,50 @@ def bundesliga():
     elif b == 'n':
         print '\033[93m' + "\nThank You" + '\033[00m'
         exit()
+
+
+# Function to get the Latest Results
+def showResults(url):
+    contest_file = urllib2.urlopen(url)
+    contest_html = contest_file.read()
+    contest_file.close()
+
+    soup = BeautifulSoup(contest_html, 'html.parser')
+
+    table = soup.find("table", attrs={'class': 'table-stats'})
+
+    print "\n"
+
+    for i in table.find_all("caption"):
+        print '\033[1m' + i.text + '\033[00m'
+
+    print "\n"
+
+    home_team = []
+    away_team = []
+    score = []
+
+    for i in table.find_all("span", attrs={'class': 'team-home teams'}):
+        home_team.append(i.text)
+
+    for i in table.find_all("span", attrs={'class': 'team-away teams'}):
+        away_team.append(i.text)
+
+    for i in table.find_all("span", attrs={'class':'score'}):
+        score.append(i.text)
+
+    home_team = map(lambda s: s.strip(), home_team)
+    away_team = map(lambda s: s.strip(), away_team)
+    score = map(lambda s: s.strip(), score)
+
+    sequence = ["Home Team", "Score", "Away Team"]
+    df = pd.DataFrame()
+    df = df.reindex(columns=sequence)
+    df["Home Team"] = home_team
+    df["Score"] = score
+    df["Away Team"] = away_team
+
+    print df.to_string()
 
 
 # Function to get the Fixtures
