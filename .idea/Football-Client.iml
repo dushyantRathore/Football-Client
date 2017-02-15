@@ -7,5 +7,16 @@
     <orderEntry type="module" module-name="Web-Crawling-Scraping" />
     <orderEntry type="module" module-name="Web-Crawling-Scraping" />
     <orderEntry type="module" module-name="Web-Crawling-Scraping" />
+    <orderEntry type="module" module-name="Image_Downloader" />
+    <orderEntry type="module" module-name="Classifying-Iris-Species" />
+    <orderEntry type="module" module-name="Python Codes" />
+    <orderEntry type="module" module-name="Basic-Flask-App" />
+    <orderEntry type="module" module-name="Cricket-API" />
+    <orderEntry type="module" module-name="Lifemate" />
+    <orderEntry type="module" module-name="HacktheWorld" />
+    <orderEntry type="module" module-name="MNIST - Digit Classification" />
+    <orderEntry type="module" module-name="MNIST---Digit-Classification" />
+    <orderEntry type="module" module-name="Respirometer" />
+    <orderEntry type="module" module-name="ParameterTuning" />
   </component>
 </module>

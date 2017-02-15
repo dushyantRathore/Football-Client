@@ -3,6 +3,19 @@ from bs4 import BeautifulSoup
 import urllib2
 import pandas as pd
 import numpy as np
+from prettytable import PrettyTable
+
+class color:
+   PURPLE = '\033[95m'
+   CYAN = '\033[96m'
+   DARKCYAN = '\033[36m'
+   BLUE = '\033[94m'
+   GREEN = '\033[92m'
+   YELLOW = '\033[93m'
+   RED = '\033[91m'
+   BOLD = '\033[1m'
+   UNDERLINE = '\033[4m'
+   END = '\033[0m'
 
 
 # Entry Function
@@ -11,7 +24,7 @@ def Entry():
     x = raw_input('\033[1m' + "\nDo you want to enter ? (Press y/n)" + '\033[00m')
 
     if x == 'y':
-        print '\033[96m' + "\nWelcome to Football Client" + '\033[00m' + "\n"
+        print '\033[96m' + color.BOLD + "\nWelcome to Football Client" + color.END + '\033[00m' + "\n"
         menu()
     elif x == 'n':
         exit()
@@ -20,11 +33,11 @@ def Entry():
 # Main Menu
 def menu():
 
-    print '\033[94m' + "\nPress 1 for English Premier League"
+    print '\033[94m' + color.BOLD + "\nPress 1 for English Premier League"
     print "Press 2 for Spanish Primera Division"
-    print "Press 3 for German Bundesliga" + '\033[00m'
+    print "Press 3 for German Bundesliga" + color.END + '\033[00m'
 
-    choice = raw_input('\033[1m' + "\nEnter your choice : " + '\033[00m')
+    choice = raw_input(color.BOLD + color.RED + "\nEnter your choice : " + color.END)
 
     if choice == '1':
         epl()
@@ -42,17 +55,17 @@ def menu():
 # EPL function
 def epl():
 
-    print '\033[96m' + "\nWelcome to English Premier League" + '\033[00m'
+    print '\033[96m' + color.BOLD + "\nWelcome to English Premier League" + color.END + '\033[00m'
 
-    print '\033[94m' + "\nPress 1 for Latest League Results"
+    print color.YELLOW + color.BOLD + "\nPress 1 for Latest League Results"
     print "Press 2 for League Fixtures"
     print "Press 3 for League Standings"
     print "Press 4 for Top Scorers"
     print "Press 5 for Top Assists"
     print "Press 6 for Discipline"
-    print "Press 7 for Fairplay" + '\033[00m'
+    print "Press 7 for Fairplay" + color.END
 
-    a = raw_input('\033[1m' + "\nEnter your choice : " + '\033[00m')
+    a = raw_input(color.BOLD + color.RED + "\nEnter your choice : " + color.END)
 
     # League Results
     if a == '1':
@@ -94,7 +107,7 @@ def epl():
 
     print '\033[91m' + "\nDo you wish to continue exploring ? (Press y/n)" + '\033[00m'
 
-    b = raw_input('\033[1m' + "\nEnter your choice : " + '\033[00m')
+    b = raw_input(color.BOLD + color.RED + "\nEnter your choice : " + color.END)
 
     if b == 'y':
         menu()
@@ -115,7 +128,7 @@ def laliga():
     print "Press 6 for Discipline"
     print "Press 7 for Fairplay" + '\033[00m'
 
-    a = raw_input('\033[1m' + "\nEnter your choice : " + '\033[00m')
+    a = raw_input(color.BOLD + color.RED + "\nEnter your choice : " + color.END)
 
     # League Results
     if a == '1':
@@ -158,7 +171,7 @@ def laliga():
 
     print '\033[91m' + "\nDo you wish to continue exploring ? (Press y/n)" + '\033[00m'
 
-    b = raw_input('\033[1m' + "\nEnter your choice : " + '\033[00m')
+    b = raw_input(color.BOLD + color.RED + "\nEnter your choice : " + color.END)
 
     if b == 'y':
         menu()
@@ -179,7 +192,7 @@ def bundesliga():
     print "Press 6 for Discipline"
     print "Press 7 for Fairplay" + '\033[00m'
 
-    a = raw_input('\033[1m' + "\nEnter your choice : " + '\033[00m')
+    a = raw_input(color.BOLD + color.RED + "\nEnter your choice : " + color.END)
 
     # League Results
     if a == '1':
@@ -221,7 +234,7 @@ def bundesliga():
 
     print '\033[91m' + "\nDo you wish to continue exploring ? (Press y/n)" + '\033[00m'
 
-    b = raw_input('\033[1m' + "\nEnter your choice : " + '\033[00m')
+    b = raw_input(color.BOLD + color.RED + "\nEnter your choice : " + color.END)
 
     if b == 'y':
         menu()
@@ -271,7 +284,13 @@ def showResults(url):
     df["Score"] = score
     df["Away Team"] = away_team
 
-    print df.to_string()
+    t = PrettyTable(sequence)
+
+    for i in range(0,len(home_team)):
+        t.add_row([home_team[i], score[i], away_team[i]])
+
+    print t
+
 
 
 # Function to get the Fixtures
@@ -317,7 +336,14 @@ def getFixtures(url):
         print '\033[1m' + j.text + '\033[00m'
 
     print "\n"
-    print df.to_string()
+    # print df.to_string()
+
+    t = PrettyTable(sequence)
+    for i in range(0,len(home_team)):
+        t.add_row([home_team[i], away_team[i], time[i]])
+
+    print t
+
     print "\n"
 
 
