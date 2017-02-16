@@ -21,10 +21,10 @@ class color:
 # Entry Function
 def Entry():
 
-    x = raw_input('\033[1m' + "\nDo you want to enter ? (Press y/n)" + '\033[00m')
+    x = raw_input(color.BOLD + "\nDo you want to enter ? (Press y/n)" + color.END)
 
     if x == 'y':
-        print '\033[96m' + color.BOLD + "\nWelcome to Football Client" + color.END + '\033[00m' + "\n"
+        print color.CYAN + color.BOLD + "\nWelcome to Football Client" + color.END + "\n"
         menu()
     elif x == 'n':
         exit()
@@ -33,9 +33,9 @@ def Entry():
 # Main Menu
 def menu():
 
-    print '\033[94m' + color.BOLD + "\nPress 1 for English Premier League"
+    print color.BLUE + color.BOLD + "\nPress 1 for English Premier League"
     print "Press 2 for Spanish Primera Division"
-    print "Press 3 for German Bundesliga" + color.END + '\033[00m'
+    print "Press 3 for German Bundesliga" + color.END
 
     choice = raw_input(color.BOLD + color.RED + "\nEnter your choice : " + color.END)
 
@@ -55,7 +55,7 @@ def menu():
 # EPL function
 def epl():
 
-    print '\033[96m' + color.BOLD + "\nWelcome to English Premier League" + color.END + '\033[00m'
+    print color.CYAN + color.BOLD + "\nWelcome to English Premier League" + color.END
 
     print color.YELLOW + color.BOLD + "\nPress 1 for Latest League Results"
     print "Press 2 for League Fixtures"
@@ -105,28 +105,28 @@ def epl():
     else:
         print "Invalid choice"
 
-    print '\033[91m' + "\nDo you wish to continue exploring ? (Press y/n)" + '\033[00m'
+    print color.GREEN + color.BOLD + "\nDo you wish to continue exploring ? (Press y/n)" + color.END
 
     b = raw_input(color.BOLD + color.RED + "\nEnter your choice : " + color.END)
 
     if b == 'y':
         menu()
     elif b == 'n':
-        print '\033[93m' + "\nThank You" + '\033[00m'
+        print color.YELLOW + color.BOLD + "\nThank You" + color.END
         exit()
 
 
 # Laliga function
 def laliga():
-    print '\033[96m' + "\nWelcome to La Liga" + '\033[00m'
+    print color.CYAN + color.BOLD + "\nWelcome to La Liga" + color.END
 
-    print '\033[94m' + "\nPress 1 for Latest League Results"
+    print color.YELLOW + color.BOLD + "\nPress 1 for Latest League Results"
     print "Press 2 for League Fixtures"
     print "Press 3 for League Standings"
     print "Press 4 for Top Scorers"
     print "Press 5 for Top Assists"
     print "Press 6 for Discipline"
-    print "Press 7 for Fairplay" + '\033[00m'
+    print "Press 7 for Fairplay" + color.END
 
     a = raw_input(color.BOLD + color.RED + "\nEnter your choice : " + color.END)
 
@@ -169,28 +169,28 @@ def laliga():
         print "Invalid choice"
         exit()
 
-    print '\033[91m' + "\nDo you wish to continue exploring ? (Press y/n)" + '\033[00m'
+    print color.GREEN + color.BOLD + "\nDo you wish to continue exploring ? (Press y/n)" + color.END
 
     b = raw_input(color.BOLD + color.RED + "\nEnter your choice : " + color.END)
 
     if b == 'y':
         menu()
     elif b == 'n':
-        print '\033[93m' + "\nThank You" + '\033[00m'
+        print color.YELLOW + color.BOLD + "\nThank You" + color.END
         exit()
 
 
 # Bundesliga function
 def bundesliga():
-    print '\033[96m' + "\nWelcome to Bundesliga" + '\033[00m'
+    print color.CYAN + color.BOLD + "\nWelcome to Bundesliga" + color.END
 
-    print '\033[94m' + "\nPress 1 for Latest League Results"
+    print color.YELLOW + color.BOLD + "\nPress 1 for Latest League Results"
     print "Press 2 for League Fixtures"
     print "Press 3 for League Standings"
     print "Press 4 for Top Scorers"
     print "Press 5 for Top Assists"
     print "Press 6 for Discipline"
-    print "Press 7 for Fairplay" + '\033[00m'
+    print "Press 7 for Fairplay" + color.END
 
     a = raw_input(color.BOLD + color.RED + "\nEnter your choice : " + color.END)
 
@@ -232,14 +232,14 @@ def bundesliga():
     else:
         print "Invalid choice"
 
-    print '\033[91m' + "\nDo you wish to continue exploring ? (Press y/n)" + '\033[00m'
+    print color.GREEN + color.BOLD + "\nDo you wish to continue exploring ? (Press y/n)" + color.END
 
     b = raw_input(color.BOLD + color.RED + "\nEnter your choice : " + color.END)
 
     if b == 'y':
         menu()
     elif b == 'n':
-        print '\033[93m' + "\nThank You" + '\033[00m'
+        print color.YELLOW + color.BOLD + "\nThank You" + color.END
         exit()
 
 
@@ -278,11 +278,11 @@ def showResults(url):
     score = map(lambda s: s.strip(), score)
 
     sequence = ["Home Team", "Score", "Away Team"]
-    df = pd.DataFrame()
-    df = df.reindex(columns=sequence)
-    df["Home Team"] = home_team
-    df["Score"] = score
-    df["Away Team"] = away_team
+    # df = pd.DataFrame()
+    # df = df.reindex(columns=sequence)
+    # df["Home Team"] = home_team
+    # df["Score"] = score
+    # df["Away Team"] = away_team
 
     t = PrettyTable(sequence)
 
@@ -290,7 +290,6 @@ def showResults(url):
         t.add_row([home_team[i], score[i], away_team[i]])
 
     print t
-
 
 
 # Function to get the Fixtures
@@ -324,11 +323,11 @@ def getFixtures(url):
     time = map(lambda s: s.strip(), time)
 
     sequence = ["Home Team", "Away Team", "Time UTC"]
-    df = pd.DataFrame()
-    df = df.reindex(columns=sequence)
-    df["Home Team"] = home_team
-    df["Away Team"] = away_team
-    df["Time UTC"] = time
+    # df = pd.DataFrame()
+    # df = df.reindex(columns=sequence)
+    # df["Home Team"] = home_team
+    # df["Away Team"] = away_team
+    # df["Time UTC"] = time
 
     print "\n"
 
@@ -398,19 +397,25 @@ def leagueStandings(url):
     for i in range(1, 21):
         pos.append(i)
 
-    df["Position"] = pos
-    df["Team"] = team_name
-    df["Games"] = games_played
-    df["Wins"] = wins
-    df["Draws"] = draws
-    df["Losses"] = losses
-    df["For"] = goals_for
-    df["Against"] = goals_against
-    df["Goals Difference"] = goals_difference
-    df["Points"] = points
+    # df["Position"] = pos
+    # df["Team"] = team_name
+    # df["Games"] = games_played
+    # df["Wins"] = wins
+    # df["Draws"] = draws
+    # df["Losses"] = losses
+    # df["For"] = goals_for
+    # df["Against"] = goals_against
+    # df["Goals Difference"] = goals_difference
+    # df["Points"] = points
+    #
+    # print "\n"
+    # print df.to_string()
 
-    print "\n"
-    print df.to_string()
+    t = PrettyTable(sequence)
+    for i in range(0, len(pos)):
+        t.add_row([pos[i], team_name[i], games_played[i], wins[i], draws[i], losses[i],  goals_for[i], goals_against[i], goals_difference[i], points[i]])
+
+    print t
 
 
 # Function to fetch the League Standings for Bundesliga
@@ -464,19 +469,26 @@ def leagueStandings_bundesliga(url):
     for i in range(1, 19):
         pos.append(i)
 
-    df["Position"] = pos
-    df["Team"] = team_name
-    df["Games"] = games_played
-    df["Wins"] = wins
-    df["Draws"] = draws
-    df["Losses"] = losses
-    df["For"] = goals_for
-    df["Against"] = goals_against
-    df["Goals Difference"] = goals_difference
-    df["Points"] = points
+    # df["Position"] = pos
+    # df["Team"] = team_name
+    # df["Games"] = games_played
+    # df["Wins"] = wins
+    # df["Draws"] = draws
+    # df["Losses"] = losses
+    # df["For"] = goals_for
+    # df["Against"] = goals_against
+    # df["Goals Difference"] = goals_difference
+    # df["Points"] = points
 
     print "\n"
-    print df.to_string()
+    # print df.to_string()
+
+    t = PrettyTable(sequence)
+    for i in range(0, len(pos)):
+        t.add_row([pos[i], team_name[i], games_played[i], wins[i], draws[i], losses[i], goals_for[i], goals_against[i],
+                   goals_difference[i], points[i]])
+
+    print t
 
 
 # Function to fetch the Top Scorers
@@ -510,16 +522,22 @@ def topScorers(url):
         goals_list.append(i.text)
 
     sequence = ["Rank", "Player", "Team", "Goals"]
-    df = pd.DataFrame()
-    df = df.reindex(columns=sequence)
-
-    df["Rank"] = rank_list
-    df["Player"] = players_list
-    df["Team"] = team_list
-    df["Goals"] = goals_list
+    # df = pd.DataFrame()
+    # df = df.reindex(columns=sequence)
+    #
+    # df["Rank"] = rank_list
+    # df["Player"] = players_list
+    # df["Team"] = team_list
+    # df["Goals"] = goals_list
 
     print "\n"
-    print df
+    # print df
+
+    t = PrettyTable(sequence)
+    for i in range(0,len(rank_list)):
+        t.add_row([rank_list[i], players_list[i], team_list[i], goals_list[i]])
+
+    print t
 
 
 # Function to fetch the top assists
@@ -553,16 +571,22 @@ def topAssists(url):
         assists_list.append(i.text)
 
     sequence = ["Rank", "Player", "Team", "Assists"]
-    df = pd.DataFrame()
-    df = df.reindex(columns=sequence)
-
-    df["Rank"] = rank_list
-    df["Player"] = players_list
-    df["Team"] = team_list
-    df["Assists"] = assists_list
+    # df = pd.DataFrame()
+    # df = df.reindex(columns=sequence)
+    #
+    # df["Rank"] = rank_list
+    # df["Player"] = players_list
+    # df["Team"] = team_list
+    # df["Assists"] = assists_list
 
     print "\n"
-    print df
+    # print df
+
+    t = PrettyTable(sequence)
+    for i in range(0,len(rank_list)):
+        t.add_row([rank_list[i], players_list[i], team_list[i], assists_list[i]])
+
+    print t
 
 
 # Function to fetch the discipline rankings
@@ -605,18 +629,26 @@ def discipline(url):
         points_list.append(points[i].text)
 
     sequence = ['Rank', 'Player', 'Team', 'Yellow Cards', 'Red Cards', 'Points']
-    df = pd.DataFrame()
-    df = df.reindex(columns=sequence)
+    # df = pd.DataFrame()
+    # df = df.reindex(columns=sequence)
+    #
+    # df["Rank"] = rank_list
+    # df["Player"] = player_list
+    # df["Team"] = team_list
+    # df["Yellow Cards"] = yc_list
+    # df["Red Cards"] = rc_list
+    # df["Points"] = points_list
 
-    df["Rank"] = rank_list
-    df["Player"] = player_list
-    df["Team"] = team_list
-    df["Yellow Cards"] = yc_list
-    df["Red Cards"] = rc_list
-    df["Points"] = points_list
+    # print df.to_string()
 
-    print df.to_string()
+    t = PrettyTable(sequence)
+    for i in range(0, len(rank_list)):
+        t.add_row([rank_list[i], player_list[i], team_list[i], yc_list[i], rc_list[i], points_list[i]])
 
+    print t
+
+
+# Function to fetch the fairplay rankings
 def fairplay(url):
     url = str(url)
     contest_file = urllib2.urlopen(url)
@@ -651,15 +683,21 @@ def fairplay(url):
         points_list.append(points[i].text)
 
     sequence = ['Rank', 'Team', 'Yellow Cards', 'Red Cards', 'Points']
-    df = pd.DataFrame()
-    df = df.reindex(columns=sequence)
+    # df = pd.DataFrame()
+    # df = df.reindex(columns=sequence)
+    #
+    # df["Rank"] = rank_list
+    # df["Team"] = team_list
+    # df["Yellow Cards"] = yc_list
+    # df["Red Cards"] = rc_list
+    # df["Points"] = points_list
+    #
+    # print df.to_string()
 
-    df["Rank"] = rank_list
-    df["Team"] = team_list
-    df["Yellow Cards"] = yc_list
-    df["Red Cards"] = rc_list
-    df["Points"] = points_list
+    t = PrettyTable(sequence)
+    for i in range(0, len(rank_list)):
+        t.add_row([rank_list[i], team_list[i], yc_list[i], rc_list[i], points_list[i]])
 
-    print df.to_string()
+    print t
 
 Entry()
