@@ -6,8 +6,11 @@
     <mapping directory="$PROJECT_DIR$/../Classifying-Iris-Species" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../Cricket-API" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../Getting-started-with-Flask" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../Github-Client" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../Image_Downloader" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../MNIST---Digit-Classification" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../ParameterTuning" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../ParameterTuning" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../ParameterTuning" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../Respirometer" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../Web-Scraping" vcs="Git" />

@@ -18,5 +18,8 @@
     <orderEntry type="module" module-name="MNIST---Digit-Classification" />
     <orderEntry type="module" module-name="Respirometer" />
     <orderEntry type="module" module-name="ParameterTuning" />
+    <orderEntry type="module" module-name="Github-Client" />
+    <orderEntry type="module" module-name="ParameterTuning" />
+    <orderEntry type="module" module-name="ParameterTuning" />
   </component>
 </module>
