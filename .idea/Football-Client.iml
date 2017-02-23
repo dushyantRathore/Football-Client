@@ -21,5 +21,9 @@
     <orderEntry type="module" module-name="Github-Client" />
     <orderEntry type="module" module-name="ParameterTuning" />
     <orderEntry type="module" module-name="ParameterTuning" />
+    <orderEntry type="module" module-name="GUI - QT" />
+    <orderEntry type="module" module-name="ParameterTuning" />
+    <orderEntry type="module" module-name="ParameterTuning" />
+    <orderEntry type="module" module-name="ParameterTuning" />
   </component>
 </module>
